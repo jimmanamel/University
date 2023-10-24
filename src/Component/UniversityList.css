@@ -1,0 +1,21 @@
+table{
+    background-color: aliceblue;
+    margin: 0 auto;
+    width: 800px;
+    border: 2px solid salmon;
+}
+
+text{
+    padding-top: 20px;
+}
+
+.topBar{
+    display: inline-flex;
+}
+
+.search{
+    width: 250px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 200px;
+}

@@ -1,23 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { useEffect } from "react";
+import { fetchCollegeList } from "./Store/Slices/collegeListSlice";
+import { useDispatch, useSelector } from "react-redux";
+import UniversityList from "./Component/UniversityList";
 
 function App() {
+  const { collegeList, collegeListLoading } = useSelector(
+    (state) => state.collegeList
+  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCollegeList());
+  }, []);
+
+  useEffect(() => {
+    dispatch(fetchCollegeList());
+    if (localStorage.getItem("bg") === null) {
+      localStorage.setItem("bg", "silver lime aqua bisque cyan teal");
+    } else {
+      const colorArray = localStorage.getItem("bg").split(" ");
+      const colorToBeDisplayed = colorArray.shift();
+      document.body.style.backgroundColor = colorToBeDisplayed;
+      colorArray.push(colorToBeDisplayed);
+      localStorage.setItem("bg", colorArray.join(" "));
+    }
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {!collegeListLoading ? (
+        <UniversityList collegeList={collegeList} />
+      ) : (
+        <h1>Loading...</h1>
+      )}
     </div>
   );
 }
