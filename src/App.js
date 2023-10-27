@@ -14,7 +14,6 @@ function App() {
   }, []);
 
   useEffect(() => {
-    dispatch(fetchCollegeList());
     if (localStorage.getItem("bg") === null) {
       localStorage.setItem("bg", "silver lime aqua bisque cyan teal");
     } else {
