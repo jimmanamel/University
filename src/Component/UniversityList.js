@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import Pagination from "./Pagination";
-import { useDispatch } from "react-redux";
 import { changeSort } from "../Store/Slices/collegeListSlice";
 import ModelForm from "./ModelForm";
 
@@ -75,7 +75,7 @@ const UniversityList = ({ collegeList }) => {
         ))}
       </table>
       <Pagination
-        totalItems={searchData.length - 1}
+        totalItems={searchData.length}
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
         setCurrentPage={setCurrentPage}
